@@ -4,12 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://b5m86rh1lvgmo" path="res://Assets/Blender Files/Level Models/lobby.blend" id="2_dc5oo"]
 
 [node name="Demo_Level" node_paths=PackedStringArray("player_spawn_locations") instance=ExtResource("1_yl22s")]
-player_spawn_locations = [NodePath("PlayerSpawnPositions/Marker3D"), NodePath("PlayerSpawnPositions/Marker3D2")]
+player_spawn_locations = [NodePath("PlayerSpawnPositions/Marker3D"), NodePath("PlayerSpawnPositions/Marker3D2"), NodePath("PlayerSpawnPositions/Marker3D3"), NodePath("PlayerSpawnPositions/Marker3D4")]
 
 [node name="Marker3D" type="Marker3D" parent="PlayerSpawnPositions" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 4)
 
 [node name="Marker3D2" type="Marker3D" parent="PlayerSpawnPositions" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 4)
+
+[node name="Marker3D3" type="Marker3D" parent="PlayerSpawnPositions" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2)
+
+[node name="Marker3D4" type="Marker3D" parent="PlayerSpawnPositions" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
 
 [node name="lobby" parent="." index="2" instance=ExtResource("2_dc5oo")]

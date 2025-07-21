@@ -11,8 +11,8 @@ var round_score : Dictionary[int, int]
 var map_score : Dictionary[int, int]
 
 func _ready() -> void:
-	Event.Level_Events.round_won.connect(won_round.rpc)
-	Event.Level_Events.map_won.connect(won_map.rpc)
+	Event.Level_Events.round_won.connect(func(playerID : int) -> void: won_round.rpc_id(1, playerID))
+	Event.Level_Events.map_won.connect(func(playerID : int) -> void: won_map.rpc_id(1, playerID))
 	Event.Global_Events.setup_game.connect(setup_scores)
 
 func setup_scores() -> void:
@@ -25,7 +25,7 @@ func setup_scores() -> void:
 func won_round(playerID : int) -> void:
 	round_score[playerID] += 1
 	if round_score[playerID] == rounds_per_map:
-		Event.Level_Events.map_won.emit()
+		Event.Level_Events.map_won.emit(playerID)
 
 @rpc("authority", "call_local")
 func won_map(playerID : int) -> void:
