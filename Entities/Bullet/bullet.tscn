@@ -12,20 +12,22 @@ height = 0.2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oawlg"]
 
-[node name="RigidBody3D" type="RigidBody3D"]
-gravity_scale = 0.1
+[node name="Bullet" type="RigidBody3D"]
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
 script = ExtResource("1_vkx67")
 
 [node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="HurtBox" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_vkx67")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollsionBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ymhw4")
 
-[node name="Bullet" type="MeshInstance3D" parent="."]
+[node name="Mesh3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_oawlg")

@@ -13,6 +13,7 @@ script = ExtResource("1_sdonv")
 [node name="Constant Elements" type="Node" parent="."]
 
 [node name="Player_Spawner" type="MultiplayerSpawner" parent="Constant Elements"]
+_spawnable_scenes = PackedStringArray("uid://cjcm5l0drc8fw")
 spawn_path = NodePath("../Players")
 script = ExtResource("2_w1dg1")
 
@@ -31,6 +32,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
 shape = SubResource("WorldBoundaryShape3D_w1dg1")
 
 [node name="Bullet Folder" type="Node" parent="Constant Elements"]
+
+[node name="BulletSpawner" type="MultiplayerSpawner" parent="Constant Elements/Bullet Folder"]
+_spawnable_scenes = PackedStringArray("uid://dskpt6jtom78i")
+spawn_path = NodePath("..")
 
 [node name="PlayerSpawnPositions" type="Node" parent="."]
 

@@ -1,6 +1,6 @@
 class_name Level extends Node3D
 
-@onready var bullet_folder: Node = $"Constant Elements/Bullet Folder"
+@onready var bullet_spawner: MultiplayerSpawner = $"Constant Elements/Bullet Folder/BulletSpawner"
 
 @export_category("Per Level Settings")
 @export var player_spawn_locations : Array[Marker3D] = []
@@ -11,6 +11,8 @@ var original_gravity : float = ProjectSettings.get_setting("physics/3d/default_g
 var alive_players : Array[int]
 
 func _ready() -> void:
+	bullet_spawner.spawn_function = spawn_bullet
+	
 	Event.Level_Events.map_won.connect(cleanup_level_handler)
 	Event.Level_Events.round_won.connect(reset_after_round.rpc)
 	Event.Player_Events.player_died.connect(player_died)
@@ -63,3 +65,17 @@ func _on_world_boundry_body_entered(body: Node3D) -> void:
 	if body is not Player: return
 	body = body as Player # TODO: This is simply so the editor shows us autofil info.
 	body.health.take_damage.rpc_id(body.get_multiplayer_authority(), 100000) # the player SHOULNDT have 100k health... I hope
+
+
+@export var bullet : PackedScene = preload("res://Entities/Bullet/bullet.tscn")
+
+func spawn_bullet(vars : Array) -> Node:
+	var bullet_position : Vector3 = vars[0]
+	var bullet_rotation : Vector3 = vars[1]
+	var bullet_velocity : Vector3 = vars[2]
+	
+	var new_bullet : Bullet = bullet.instantiate()
+	new_bullet.position = bullet_position
+	new_bullet.rotation = bullet_rotation
+	new_bullet.linear_velocity = bullet_velocity
+	return new_bullet
