@@ -27,3 +27,9 @@ func spawn_players() -> void:
 
 func cleanup_level_handler() -> void:
 	ProjectSettings.set_setting("physics/3d/default_gravity", original_gravity)
+
+
+func _on_world_boundry_body_entered(body: Node3D) -> void:
+	if body is not Player: return
+	body = body as Player # TODO: This is simply so the editor shows us autofil info.
+	body.health.take_damage.rpc_id(1, 100000) # the player SHOULNDT have 100k health... I hope

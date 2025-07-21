@@ -1,18 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://crkupxoo1fnsm"]
+[gd_scene load_steps=5 format=3 uid="uid://crkupxoo1fnsm"]
 
 [ext_resource type="Script" uid="uid://q8m7r7tks21c" path="res://Common/Scenes/Level Class/level_class.gd" id="1_sdonv"]
 [ext_resource type="Script" uid="uid://c2pr8almaf3e8" path="res://Common/Scenes/Level Class/player_spawner.gd" id="2_w1dg1"]
 
 [sub_resource type="Environment" id="Environment_w1dg1"]
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w1dg1"]
+
 [node name="Level Class" type="Node3D"]
 script = ExtResource("1_sdonv")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w1dg1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0)
 
 [node name="Constant Elements" type="Node" parent="."]
 
@@ -22,4 +18,18 @@ script = ExtResource("2_w1dg1")
 
 [node name="Players" type="Node" parent="Constant Elements"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Constant Elements"]
+environment = SubResource("Environment_w1dg1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Constant Elements/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0)
+
+[node name="WorldBoundry" type="Area3D" parent="Constant Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
+
+[node name="WorldBoundryCollisionShape" type="CollisionShape3D" parent="Constant Elements/WorldBoundry"]
+shape = SubResource("WorldBoundaryShape3D_w1dg1")
+
 [node name="PlayerSpawnPositions" type="Node" parent="."]
+
+[connection signal="body_entered" from="Constant Elements/WorldBoundry" to="." method="_on_world_boundry_body_entered"]

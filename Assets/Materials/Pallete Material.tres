@@ -4,6 +4,8 @@
 
 [resource]
 resource_name = "Pallete Material"
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("1_fcjdj")
 roughness = 0.5
 texture_filter = 2

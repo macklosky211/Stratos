@@ -1,9 +1,16 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
+@onready var health: HealthComponent = $HealthComponent
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const WALK_SPEED : float = 5.0
+const SPRINT_SPEED : float = WALK_SPEED * 2.0
+const CROUCH_SPEED : float = WALK_SPEED * 0.5
+const JUMP_VELOCITY : float = 4.5
+const AIR_SPEED : float = 3.0
+
+const ACCEL : float = 2.5
+const AIR_ACCEL : float = 0.5
 
 var mouse_sensitivity : float = 0.001
 var mouse_locked : bool = false
@@ -19,19 +26,24 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if not is_on_floor(): velocity += get_gravity() * delta
 	
-	if Input.is_action_just_pressed("Jump") and is_on_floor(): velocity.y = JUMP_VELOCITY
+	if Input.is_action_pressed("Jump") and is_on_floor(): velocity.y = JUMP_VELOCITY
 	
 	if mouse_locked and Input.is_action_just_pressed("Escape"): toggle_mouse(false)
 	
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	
+	var speed = WALK_SPEED
+	if Input.is_action_pressed("Crouch"): speed = CROUCH_SPEED
+	elif Input.is_action_pressed("Sprint"): speed = SPRINT_SPEED
+	
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, direction.x * speed, ACCEL)
+		velocity.z = move_toward(velocity.z, direction.z * speed, ACCEL)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		velocity.x = move_toward(velocity.x, direction.x * SPRINT_SPEED, AIR_ACCEL)
+		velocity.z = move_toward(velocity.z, direction.z * SPRINT_SPEED, AIR_ACCEL)
+	
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:

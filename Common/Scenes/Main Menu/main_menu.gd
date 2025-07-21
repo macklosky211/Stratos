@@ -10,7 +10,7 @@ func _on_start_button_pressed() -> void:
 
 @rpc("any_peer", "call_local")
 func start_lobby() -> void:
-	get_tree().change_scene_to_file("res://Assets/Levels/demo_level.tscn")
+	get_tree().change_scene_to_file("res://Assets/Level Scenes/demo_level.tscn")
 
 func failure_message(error : Error) -> void:
 	$"Lobby Tooltip".text = "Multiplayer Networking Failed With Error: %d" % error
