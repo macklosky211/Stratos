@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dshdp1cv7crie" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://ri22h4ln3vnp" path="res://Entities/Player/health_component.gd" id="2_3uyv8"]
-[ext_resource type="PackedScene" uid="uid://cwdqwwwjef3t2" path="res://Common/Scenes/Weapons/Gun_Class.tscn" id="3_lu8i8"]
+[ext_resource type="PackedScene" uid="uid://cwdqwwwjef3t2" path="res://Common/Scenes/Gun Class/Gun_Class.tscn" id="3_lu8i8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mv1ah"]
 

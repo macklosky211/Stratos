@@ -1,5 +1,7 @@
 class_name Level extends Node3D
 
+@onready var bullet_folder: Node = $"Constant Elements/Bullet Folder"
+
 @export_category("Per Level Settings")
 @export var player_spawn_locations : Array[Marker3D] = []
 @export var level_gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity", 9.8)

@@ -30,6 +30,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
 [node name="WorldBoundryCollisionShape" type="CollisionShape3D" parent="Constant Elements/WorldBoundry"]
 shape = SubResource("WorldBoundaryShape3D_w1dg1")
 
+[node name="Bullet Folder" type="Node" parent="Constant Elements"]
+
 [node name="PlayerSpawnPositions" type="Node" parent="."]
 
 [connection signal="body_entered" from="Constant Elements/WorldBoundry" to="." method="_on_world_boundry_body_entered"]

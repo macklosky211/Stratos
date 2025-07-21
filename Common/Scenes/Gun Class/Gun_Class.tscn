@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwdqwwwjef3t2"]
 
-[ext_resource type="Script" uid="uid://dtvm8nw436bvu" path="res://Common/Scenes/Weapons/Gun.gd" id="1_u8oeg"]
+[ext_resource type="Script" uid="uid://dtvm8nw436bvu" path="res://Common/Scenes/Gun Class/Gun.gd" id="1_u8oeg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u8oeg"]
 
