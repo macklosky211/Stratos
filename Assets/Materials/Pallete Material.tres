@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blvun2nyj5sde"]
+
+[ext_resource type="Texture2D" uid="uid://bpnig4d74nax2" path="res://Assets/Sprites/pallete.png" id="1_fcjdj"]
+
+[resource]
+resource_name = "Pallete Material"
+albedo_texture = ExtResource("1_fcjdj")
+roughness = 0.5
+texture_filter = 2
+texture_repeat = false

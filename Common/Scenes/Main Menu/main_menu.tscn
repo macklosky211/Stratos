@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://delhsjvnelfaw"]
+
+[ext_resource type="Script" uid="uid://dk6h6p6fri5fm" path="res://Common/Scenes/Main Menu/main_menu.gd" id="1_kraom"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kraom")
+
+[node name="Start Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 478.0
+offset_right = 628.0
+offset_bottom = 547.0
+disabled = true
+text = "Start"
+
+[node name="Host Lobby Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 344.0
+offset_right = 790.0
+offset_bottom = 413.0
+text = "Host Lobby"
+
+[node name="Join Lobby Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 344.0
+offset_right = 437.0
+offset_bottom = 413.0
+text = "Join Lobby"
+
+[node name="Lobby Tooltip" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 549.0
+offset_right = 687.0
+offset_bottom = 651.0
+text = "Please Host or Join A lobby."
+fit_content = true
+horizontal_alignment = 1
+
+[node name="IP_ADDRESS_BOX" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 257.0
+offset_right = 478.0
+offset_bottom = 339.0
+text = "localhost"
+placeholder_text = "Lobby IPV4 Address"
+wrap_mode = 1
+
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Host Lobby Button" to="." method="_host_lobby"]
+[connection signal="pressed" from="Join Lobby Button" to="." method="_join_lobby"]
