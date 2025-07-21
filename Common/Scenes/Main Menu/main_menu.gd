@@ -10,6 +10,7 @@ func _on_start_button_pressed() -> void:
 
 @rpc("any_peer", "call_local")
 func start_lobby() -> void:
+	print("[%d] called setup game with a Network.Players: " % multiplayer.get_unique_id(), Network.players)
 	Event.Global_Events.setup_game.emit()
 	get_tree().change_scene_to_file("res://Assets/Level Scenes/demo_level.tscn")
 

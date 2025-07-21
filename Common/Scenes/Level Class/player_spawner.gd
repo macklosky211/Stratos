@@ -10,7 +10,6 @@ func spawn_player(vars : Array) -> Node:
 	
 	var player : Node = player_scene.instantiate()
 	player.name = str(steamID)
-	player.position = vars[1]
 	
 	## Not sure I want to give authority to anyone who isnt the server... may change this later
 	## TODO: Figure this out.

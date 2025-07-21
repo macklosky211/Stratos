@@ -5,7 +5,7 @@ extends Node
 
 ## Stores all players steamID's, used to spawn players when each level is loaded.
 ## NOTE: player_id 1 will be in this as well. but its not a valid steamID.
-var players : Array[int] = [1]
+var players : Array[int] = []
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(func(player_id : int) -> void: players.append(player_id))
@@ -22,6 +22,8 @@ func host_server() -> void:
 	multiplayer.multiplayer_peer = peer
 	
 	Event.Network_Events.successfully_created_lobby.emit()
+	
+	players.append(multiplayer.get_unique_id())
 
 func join_server(address : String) -> void:
 	var peer : MultiplayerPeer = ENetMultiplayerPeer.new()
@@ -35,3 +37,5 @@ func join_server(address : String) -> void:
 	multiplayer.multiplayer_peer = peer
 	
 	Event.Network_Events.successfully_joined_lobby.emit()
+	
+	players.append(multiplayer.get_unique_id())

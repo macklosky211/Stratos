@@ -23,6 +23,7 @@ func setup_scores() -> void:
 ## Call when a player wins a round.
 @rpc("authority", "call_local")
 func won_round(playerID : int) -> void:
+	print("[%d] won_round was called by %d" % [multiplayer.get_unique_id(), multiplayer.get_remote_sender_id()])
 	round_score[playerID] += 1
 	if round_score[playerID] == rounds_per_map:
 		Event.Level_Events.map_won.emit(playerID)

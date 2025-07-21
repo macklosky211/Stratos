@@ -46,6 +46,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+@rpc("any_peer", "call_local")
+func reset() -> void:
+	health.reset()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	if event is InputEventMouseMotion:

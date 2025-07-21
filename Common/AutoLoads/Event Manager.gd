@@ -12,7 +12,6 @@ class GlobalEventsClass:
 class LevelEventsClass:
 	signal level_finished_loading()
 	signal change_to_level(new_level : PackedScene)
-	signal spawn_players()
 	signal cleanup_level()
 	signal round_won(playerID : int)
 	signal map_won(playerID: int)
