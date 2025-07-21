@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjcm5l0drc8fw"]
+[gd_scene load_steps=10 format=3 uid="uid://cjcm5l0drc8fw"]
 
 [ext_resource type="Script" uid="uid://dshdp1cv7crie" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://ri22h4ln3vnp" path="res://Entities/Player/health_component.gd" id="2_3uyv8"]
+[ext_resource type="PackedScene" uid="uid://cwdqwwwjef3t2" path="res://Common/Scenes/Weapons/Gun_Class.tscn" id="3_lu8i8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mv1ah"]
 
@@ -43,6 +44,15 @@ shape = SubResource("CapsuleShape3D_mv1ah")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
+
+[node name="WeaponComponent" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.169979, -1.34709)
+
+[node name="RightHand" type="Node3D" parent="Camera3D/WeaponComponent"]
+
+[node name="GunClass" parent="Camera3D/WeaponComponent/RightHand" instance=ExtResource("3_lu8i8")]
+
+[node name="LeftHand" type="Node3D" parent="Camera3D/WeaponComponent"]
 
 [node name="FastSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_mv1ah")
