@@ -62,7 +62,8 @@ func position_players() -> void:
 
 ## This is the world boundry collider, anyone who falls below it should die.
 func _on_world_boundry_body_entered(body: Node3D) -> void:
-	if body is not Player: return
+	if not body.is_multiplayer_authority(): return # if we dont own the body then we shouldnt report it.
+	if body is not Player: return ## TODO: may want to do a check here for guns and despawn them when they hit this...
 	body = body as Player # TODO: This is simply so the editor shows us autofil info.
 	body.health.take_damage.rpc_id(body.get_multiplayer_authority(), 100000) # the player SHOULNDT have 100k health... I hope
 
