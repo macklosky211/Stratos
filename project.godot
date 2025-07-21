@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Event="*res://Common/AutoLoads/Event Manager.gd"
 Network="*res://Common/AutoLoads/Network.gd"
+Score="*res://Common/AutoLoads/ScoreManager.gd"
 
 [debug]
 

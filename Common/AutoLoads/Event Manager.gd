@@ -3,12 +3,19 @@ extends Node
 var Level_Events : LevelEventsClass = LevelEventsClass.new()
 var Network_Events : NetworkEventsClass = NetworkEventsClass.new()
 var Player_Events : PlayerEventsClass = PlayerEventsClass.new()
+var Global_Events : GlobalEventsClass = GlobalEventsClass.new()
+
+class GlobalEventsClass:
+	signal game_finshed(playerID_who_won : int) ## Emits when a player wins the overall game.
+	signal setup_game() ## Emits when the players are attempting to PLAY the game.
 
 class LevelEventsClass:
 	signal level_finished_loading()
 	signal change_to_level(new_level : PackedScene)
 	signal spawn_players()
 	signal cleanup_level()
+	signal round_won(playerID : int)
+	signal map_won(playerID: int)
 
 class PlayerEventsClass:
 	signal player_died(playerID : int)
