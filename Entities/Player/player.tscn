@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjcm5l0drc8fw"]
+[gd_scene load_steps=18 format=3 uid="uid://cjcm5l0drc8fw"]
 
 [ext_resource type="Script" uid="uid://dshdp1cv7crie" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://ri22h4ln3vnp" path="res://Entities/Player/health_component.gd" id="2_3uyv8"]
@@ -29,6 +29,13 @@ properties/0/replication_mode = 1
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lub02"]
+size = Vector3(1, 0.75, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lub02"]
+radius = 0.3
+height = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mv1ah")
@@ -113,14 +120,16 @@ script = ExtResource("4_tekja")
 [node name="Vaulting" type="Node" parent="States"]
 script = ExtResource("9_lub02")
 
-[node name="Bottom_Collision" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
-target_position = Vector3(0, 0, -1)
-
-[node name="Waist_Collision" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-target_position = Vector3(0, 0, -1)
-
-[node name="Landing" type="RayCast3D" parent="."]
+[node name="Landing" type="RayCast3D" parent="States/Vaulting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="Waist_Collision" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_lub02")
+target_position = Vector3(0, 0, -0.5)
+
+[node name="Bottom_Collision" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.250073, 0)
+shape = SubResource("CapsuleShape3D_lub02")
+target_position = Vector3(0, -0.5, 0)

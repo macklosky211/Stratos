@@ -60,9 +60,9 @@ func toggle_mouse(val : bool = not mouse_locked) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if mouse_locked else Input.MOUSE_MODE_VISIBLE
 
 
-@onready var bottom_collision: RayCast3D = $Bottom_Collision
-@onready var waist_collision: RayCast3D = $Waist_Collision
-@onready var landing: RayCast3D = $Landing
+@onready var bottom_collision: ShapeCast3D = $Bottom_Collision
+@onready var waist_collision: ShapeCast3D = $Waist_Collision
+
 func _try_vault() -> bool:
 	if bottom_collision.is_colliding() and not waist_collision.is_colliding():
 		return true
