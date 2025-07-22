@@ -1,7 +1,8 @@
 extends State
 
 func _update(player : State_Controller, _delta : float) -> void:
-	if Input.is_action_pressed("Jump") and player.is_on_floor(): player.velocity.y += player.JUMP_VELOCITY
+	if Input.is_action_pressed("Jump") and player._try_vault(): player.current_state = player.vaulting; return
+	elif Input.is_action_pressed("Jump") and player.is_on_floor(): player.velocity.y += player.JUMP_VELOCITY
 	if Input.is_action_pressed("Crouch"): player.current_state = player.Crouching; return
 	elif Input.is_action_pressed("Sprint"): player.current_state = player.Sprinting; return
 	

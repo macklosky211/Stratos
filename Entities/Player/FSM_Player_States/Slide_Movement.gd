@@ -6,7 +6,8 @@ const min_slide_speed : float = 1.0
 var velocity_last_frame : float = 0.0
 
 func _update(player : State_Controller, _delta : float) -> void:
-	if Input.is_action_pressed("Jump") and player.is_on_floor(): 
+	if Input.is_action_pressed("Jump") and player._try_vault(): player.current_state = player.vaulting; return
+	elif Input.is_action_pressed("Jump") and player.is_on_floor(): 
 		player.velocity += player.transform.basis * Vector3(0.0, 0.0, -5.0)
 		player.velocity.y += player.JUMP_VELOCITY * 1.25
 	elif not Input.is_action_pressed("Crouch"): player.current_state = player.Sprinting; return

@@ -8,7 +8,8 @@ func _exit(player : State_Controller) -> void:
 
 func _update(player : State_Controller, _delta : float) -> void:
 	if not player.is_on_floor(): player.current_state = player.Walking; return
-	if Input.is_action_pressed("Jump") and player.is_on_floor(): player.velocity.y += player.JUMP_VELOCITY
+	if Input.is_action_pressed("Jump") and player._try_vault(): player.current_state = player.vaulting; return
+	elif Input.is_action_pressed("Jump") and player.is_on_floor(): player.velocity.y += player.JUMP_VELOCITY
 	if not Input.is_action_pressed("Crouch"): player.current_state = player.Idle; return
 	
 	var input : Vector2 = _get_input()

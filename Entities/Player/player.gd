@@ -14,6 +14,7 @@ const ACCEL : float = 2.5
 var mouse_sensitivity : float = 0.001
 var mouse_locked : bool = false
 var is_crouching : bool = false
+var should_gravity: bool = true
 
 #states
 @onready var Walking: State = $States/Walking
@@ -21,7 +22,7 @@ var is_crouching : bool = false
 @onready var Sliding: State = $States/Sliding
 @onready var Crouching: State = $States/Crouching
 @onready var Idle: State = $States/Idle
-
+@onready var vaulting: Node = $States/Vaulting
 
 func _ready() -> void:
 	if not is_multiplayer_authority():
@@ -34,7 +35,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	if current_state is Object and current_state.has_method("_update"): current_state._update(self, delta)
-	if not is_on_floor(): velocity += get_gravity() * delta
+	if not is_on_floor() and should_gravity: velocity += get_gravity() * delta
 	move_and_slide()
 
 @rpc("any_peer", "call_local")
@@ -55,3 +56,13 @@ func _get_world_direction_from_input(local_vector : Vector2) -> Vector3:
 func toggle_mouse(val : bool = not mouse_locked) -> void:
 	mouse_locked = val
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if mouse_locked else Input.MOUSE_MODE_VISIBLE
+
+
+@onready var bottom_collision: RayCast3D = $Bottom_Collision
+@onready var waist_collision: RayCast3D = $Waist_Collision
+@onready var landing: RayCast3D = $Landing
+func _try_vault() -> bool:
+	if bottom_collision.is_colliding() and not waist_collision.is_colliding():
+		return true
+	return false
+	
