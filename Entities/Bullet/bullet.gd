@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 
 
 @rpc("authority")
-func sync_position(position : Vector3, velocity : Vector3) -> void:
+func sync_position(passed_position : Vector3, velocity : Vector3) -> void:
 	#print("[%d] sync_position was called by [%d]" % [multiplayer.get_unique_id(), multiplayer.get_remote_sender_id()])
-	global_position = position
+	global_position = passed_position
 	linear_velocity = velocity

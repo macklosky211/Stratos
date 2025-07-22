@@ -39,7 +39,7 @@ folder_colors={
 "res://Common/FSM_Scripts/": "teal",
 "res://Common/Scenes/": "teal",
 "res://Entities/": "green",
-"res://Entities/Player/FSM_Player/": "teal"
+"res://Entities/Player/FSM_Player_States/": "teal"
 }
 
 [input]

@@ -1,5 +1,4 @@
 extends State
-class_name Jumping
 
 var speed : float = 0.0
 
