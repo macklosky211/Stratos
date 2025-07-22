@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjcm5l0drc8fw"]
+[gd_scene load_steps=17 format=3 uid="uid://cjcm5l0drc8fw"]
 
 [ext_resource type="Script" uid="uid://dshdp1cv7crie" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://ri22h4ln3vnp" path="res://Entities/Player/health_component.gd" id="2_3uyv8"]
 [ext_resource type="PackedScene" uid="uid://cwdqwwwjef3t2" path="res://Common/Scenes/Gun Class/Gun_Class.tscn" id="3_lu8i8"]
+[ext_resource type="Script" uid="uid://d3e3q5ihbabd6" path="res://Entities/Player/FSM_Player/Walk_Movement.gd" id="4_5c2io"]
+[ext_resource type="Script" uid="uid://flbktgmircge" path="res://Entities/Player/FSM_Player/Idle.gd" id="4_tekja"]
+[ext_resource type="Script" uid="uid://cycaxqa34cy5t" path="res://Entities/Player/FSM_Player/Sprint_Movement.gd" id="5_4wf4l"]
+[ext_resource type="Script" uid="uid://q8bxo1nc3mue" path="res://Entities/Player/FSM_Player/Jump_Movement.gd" id="6_01a4e"]
+[ext_resource type="Script" uid="uid://b5av0jd6it12b" path="res://Entities/Player/FSM_Player/Crouch_Movement.gd" id="6_7a1se"]
+[ext_resource type="Script" uid="uid://ue26mcnwdbuw" path="res://Entities/Player/FSM_Player/Slide_Movement.gd" id="6_lub02"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mv1ah"]
 
@@ -23,6 +29,11 @@ properties/0/replication_mode = 1
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="Curve" id="Curve_lub02"]
+_limits = [0.25, 2.5, 0.0, 1.0]
+_data = [Vector2(0, 2.5), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mv1ah")
@@ -60,3 +71,24 @@ replication_config = SubResource("SceneReplicationConfig_mv1ah")
 [node name="DelayedSync" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.5
 replication_config = SubResource("SceneReplicationConfig_3uyv8")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Walking" type="Node" parent="States"]
+script = ExtResource("4_5c2io")
+
+[node name="Running" type="Node" parent="States"]
+script = ExtResource("5_4wf4l")
+
+[node name="Sliding" type="Node" parent="States"]
+script = ExtResource("6_lub02")
+Slide_Curve = SubResource("Curve_lub02")
+
+[node name="Crouching" type="Node" parent="States"]
+script = ExtResource("6_7a1se")
+
+[node name="Jumping" type="Node" parent="States"]
+script = ExtResource("6_01a4e")
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("4_tekja")

@@ -36,8 +36,10 @@ folder_colors={
 "res://Assets/Sprites/": "teal",
 "res://Common/": "green",
 "res://Common/AutoLoads/": "teal",
+"res://Common/FSM_Scripts/": "teal",
 "res://Common/Scenes/": "teal",
-"res://Entities/": "green"
+"res://Entities/": "green",
+"res://Entities/Player/FSM_Player/": "teal"
 }
 
 [input]
