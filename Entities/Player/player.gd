@@ -10,7 +10,6 @@ const JUMP_VELOCITY : float = 3.5
 const AIR_SPEED : float = 3.0
 
 const ACCEL : float = 2.5
-const AIR_ACCEL : float = 0.5
 
 var mouse_sensitivity : float = 0.001
 var mouse_locked : bool = false
@@ -18,10 +17,9 @@ var is_crouching : bool = false
 
 #states
 @onready var Walking: State = $States/Walking
-@onready var Running: State = $States/Running
+@onready var Sprinting: State = $States/Sprinting
 @onready var Sliding: State = $States/Sliding
 @onready var Crouching: State = $States/Crouching
-@onready var Jumping: State = $States/Jumping
 @onready var Idle: State = $States/Idle
 
 
@@ -48,13 +46,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		camera.rotation.x -= event.relative.y * mouse_sensitivity
 		rotation.y -= event.relative.x * mouse_sensitivity
-	elif not mouse_locked and Input.is_action_just_pressed("Fire"):
-		toggle_mouse(true)
+	elif not mouse_locked and Input.is_action_just_pressed("Fire"): toggle_mouse(true)
 	elif Input.is_action_just_pressed("Escape"): toggle_mouse()
 
-
 func _get_world_direction_from_input(local_vector : Vector2) -> Vector3:
-	return (transform.basis * Vector3(local_vector.x, 0, -local_vector.y)).normalized()		
+	return (transform.basis * Vector3(local_vector.x, 0, -local_vector.y)).normalized()
 
 func toggle_mouse(val : bool = not mouse_locked) -> void:
 	mouse_locked = val

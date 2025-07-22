@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://d3e3q5ihbabd6" path="res://Entities/Player/FSM_Player_States/Walk_Movement.gd" id="4_5c2io"]
 [ext_resource type="Script" uid="uid://flbktgmircge" path="res://Entities/Player/FSM_Player_States/Idle.gd" id="4_tekja"]
 [ext_resource type="Script" uid="uid://cycaxqa34cy5t" path="res://Entities/Player/FSM_Player_States/Sprint_Movement.gd" id="5_4wf4l"]
-[ext_resource type="Script" uid="uid://q8bxo1nc3mue" path="res://Entities/Player/FSM_Player_States/Jump_Movement.gd" id="6_01a4e"]
 [ext_resource type="Script" uid="uid://b5av0jd6it12b" path="res://Entities/Player/FSM_Player_States/Crouch_Movement.gd" id="6_7a1se"]
 [ext_resource type="Script" uid="uid://ue26mcnwdbuw" path="res://Entities/Player/FSM_Player_States/Slide_Movement.gd" id="6_lub02"]
 
@@ -29,6 +28,30 @@ properties/0/replication_mode = 1
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="GDScript" id="GDScript_7a1se"]
+script/source = "extends State
+
+var speed : float = 0.0
+
+func _enter(player : State_Controller) -> void:
+	speed = Vector2(player.velocity.x, player.velocity.z).length() - 2.0
+	speed = maxf(speed, 2.0)
+
+func _update(player : State_Controller, _delta : float) -> void:
+	if player.is_on_floor(): player.current_state = player.Idle; return
+	
+	player.is_crouching = Input.is_action_pressed(\"Crouch\")
+	
+	var input : Vector2 = _get_input()
+	var direction : Vector3 = player._get_world_direction_from_input(input)
+
+	player.velocity = _move_vector_towards2(player.velocity, direction * speed, player.AIR_ACCEL)
+
+
+func _get_state_name() -> String:
+	return \"Player_Air_Movement\"
+"
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mv1ah")
@@ -72,7 +95,7 @@ replication_config = SubResource("SceneReplicationConfig_3uyv8")
 [node name="Walking" type="Node" parent="States"]
 script = ExtResource("4_5c2io")
 
-[node name="Running" type="Node" parent="States"]
+[node name="Sprinting" type="Node" parent="States"]
 script = ExtResource("5_4wf4l")
 
 [node name="Sliding" type="Node" parent="States"]
@@ -82,7 +105,7 @@ script = ExtResource("6_lub02")
 script = ExtResource("6_7a1se")
 
 [node name="Jumping" type="Node" parent="States"]
-script = ExtResource("6_01a4e")
+script = SubResource("GDScript_7a1se")
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("4_tekja")
