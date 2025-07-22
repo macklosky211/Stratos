@@ -1,6 +1,7 @@
 extends State
 
-const slide_decel : float = 0.1
+const slide_decel : float = 0.05
+const min_slide_speed : float = 1.0
 
 var velocity_last_frame : float = 0.0
 
@@ -14,21 +15,15 @@ func _update(player : State_Controller, delta : float) -> void:
 	
 	var current_speed : float = absf(player.velocity.length()) 
 	
+	if current_speed < min_slide_speed: player.current_state = player.Crouching
 	
 	var input : Vector2 = _get_input()
 	
-	if not input: player.current_state = player.Idle; return
-	
 	var direction : Vector3 = player._get_world_direction_from_input(input)
 	
-	if current_speed < velocity_last_frame:
-		print("no good, were deceling")
-		player.velocity = _move_vector_towards2(player.velocity, Vector3.ZERO, slide_decel)
-	else:
-		print("were accelerating")
-		player.velocity = _move_vector_towards2(player.velocity, direction * player.SPRINT_SPEED, player.ACCEL)
+	if current_speed <= velocity_last_frame: player.velocity = _move_vector_towards2(player.velocity, Vector3.ZERO, slide_decel)
+	else: player.velocity = _move_vector_towards2(player.velocity, direction * player.SPRINT_SPEED, player.ACCEL)
 	
-	#velocity_last_frame = absf(player.velocity.length())
 	velocity_last_frame = current_speed
 
 
