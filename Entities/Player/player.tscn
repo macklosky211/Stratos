@@ -83,6 +83,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.169979, -1.34709)
 
 [node name="LeftHand" type="Node3D" parent="Camera3D/WeaponComponent"]
 
+[node name="HUD" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Speedometer" type="RichTextLabel" parent="Camera3D/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.899
+anchor_right = 1.0
+anchor_bottom = 0.069
+offset_left = -0.0800781
+offset_bottom = 0.479996
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 50
+text = "SPEEED"
+fit_content = true
+
 [node name="FastSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_mv1ah")
 

@@ -3,13 +3,14 @@ class_name Player extends State_Controller
 @onready var camera : Camera3D = $Camera3D
 @onready var health : HealthComponent = $HealthComponent
 
+@onready var speedometer: RichTextLabel = $Camera3D/HUD/Speedometer
+
 const WALK_SPEED : float = 5.0
 const SPRINT_SPEED : float = WALK_SPEED * 2.0
 const CROUCH_SPEED : float = WALK_SPEED * 0.5
 const JUMP_VELOCITY : float = 3.5
-const AIR_SPEED : float = 3.0
 
-const ACCEL : float = 2.5
+const ACCEL : float = 1.25
 
 var mouse_sensitivity : float = 0.001
 var mouse_locked : bool = false
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	if current_state is Object and current_state.has_method("_update"): current_state._update(self, delta)
 	if not is_on_floor(): velocity += get_gravity() * delta
 	move_and_slide()
+	speedometer.text = "%.1f" % velocity.length()
 
 @rpc("any_peer", "call_local")
 func reset() -> void:
