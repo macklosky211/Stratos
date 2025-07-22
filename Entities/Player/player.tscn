@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cycaxqa34cy5t" path="res://Entities/Player/FSM_Player_States/Sprint_Movement.gd" id="5_4wf4l"]
 [ext_resource type="Script" uid="uid://b5av0jd6it12b" path="res://Entities/Player/FSM_Player_States/Crouch_Movement.gd" id="6_7a1se"]
 [ext_resource type="Script" uid="uid://ue26mcnwdbuw" path="res://Entities/Player/FSM_Player_States/Slide_Movement.gd" id="6_lub02"]
+[ext_resource type="Script" uid="uid://4cgdajnw01rv" path="res://Entities/Player/FSM_Player_States/Vault.gd" id="9_lub02"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mv1ah"]
 
@@ -28,30 +29,6 @@ properties/0/replication_mode = 1
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-
-[sub_resource type="GDScript" id="GDScript_7a1se"]
-script/source = "extends State
-
-var speed : float = 0.0
-
-func _enter(player : State_Controller) -> void:
-	speed = Vector2(player.velocity.x, player.velocity.z).length() - 2.0
-	speed = maxf(speed, 2.0)
-
-func _update(player : State_Controller, _delta : float) -> void:
-	if player.is_on_floor(): player.current_state = player.Idle; return
-	
-	player.is_crouching = Input.is_action_pressed(\"Crouch\")
-	
-	var input : Vector2 = _get_input()
-	var direction : Vector3 = player._get_world_direction_from_input(input)
-
-	player.velocity = _move_vector_towards2(player.velocity, direction * speed, player.AIR_ACCEL)
-
-
-func _get_state_name() -> String:
-	return \"Player_Air_Movement\"
-"
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mv1ah")
@@ -126,8 +103,20 @@ script = ExtResource("6_lub02")
 [node name="Crouching" type="Node" parent="States"]
 script = ExtResource("6_7a1se")
 
-[node name="Jumping" type="Node" parent="States"]
-script = SubResource("GDScript_7a1se")
-
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("4_tekja")
+
+[node name="Vaulting" type="Node" parent="States"]
+script = ExtResource("9_lub02")
+
+[node name="Bottom_Collision" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="Waist_Collision" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="Landing" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+target_position = Vector3(0, -2, 0)
