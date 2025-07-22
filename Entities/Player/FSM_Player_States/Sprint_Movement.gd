@@ -1,6 +1,6 @@
 extends State
 
-func _update(player : State_Controller, delta : float) -> void:
+func _update(player : State_Controller, _delta : float) -> void:
 	if Input.is_action_pressed("Jump") and player.is_on_floor(): player.velocity.y += player.JUMP_VELOCITY
 	if Input.is_action_pressed("Crouch"): player.current_state = player.Sliding; return
 	elif not Input.is_action_pressed("Sprint"): player.current_state = player.Walking; return

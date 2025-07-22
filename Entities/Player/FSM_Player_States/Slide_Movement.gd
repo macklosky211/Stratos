@@ -5,7 +5,7 @@ const min_slide_speed : float = 1.0
 
 var velocity_last_frame : float = 0.0
 
-func _update(player : State_Controller, delta : float) -> void:
+func _update(player : State_Controller, _delta : float) -> void:
 	if Input.is_action_pressed("Jump") and player.is_on_floor(): 
 		player.velocity += player.transform.basis * Vector3(0.0, 0.0, -5.0)
 		player.velocity.y += player.JUMP_VELOCITY * 1.25

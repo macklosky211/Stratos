@@ -10,7 +10,7 @@ func take_damage(amount : float) -> void:
 	
 	current_health -= amount
 	if is_dead():
-		print("[%d] I am going to broadcast that I have died." % multiplayer.get_unique_id())
+		#print("[%d] I am going to broadcast that I have died." % multiplayer.get_unique_id())
 		Event.broadcast_event.rpc(Event.Player_Events.player_died, [get_multiplayer_authority()])
 
 func is_dead() -> bool:

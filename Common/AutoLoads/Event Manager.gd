@@ -28,7 +28,7 @@ class NetworkEventsClass:
 
 @rpc("any_peer", "call_local")
 func broadcast_event(event : Signal, args : Array = []) -> void:
-	print("[%d] Broadcast %s was called by [%d]" % [multiplayer.get_unique_id(), event.get_name(), multiplayer.get_remote_sender_id()])
+	#print("[%d] Broadcast %s was called by [%d]" % [multiplayer.get_unique_id(), event.get_name(), multiplayer.get_remote_sender_id()])
 	match args.size():
 		0: event.emit()
 		1: event.emit(args[0])

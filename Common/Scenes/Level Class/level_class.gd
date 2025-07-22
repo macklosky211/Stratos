@@ -39,7 +39,7 @@ func cleanup_level_handler(_playerID : int) -> void:
 ## Reset the map after a player has won the round.
 @rpc("any_peer", "call_local")
 func reset_after_round(_playerID: int) -> void:
-	print("[%d] Attempting to reset after round has finished." % multiplayer.get_unique_id())
+	#print("[%d] Attempting to reset after round has finished." % multiplayer.get_unique_id())
 	
 	alive_players.clear()
 	
