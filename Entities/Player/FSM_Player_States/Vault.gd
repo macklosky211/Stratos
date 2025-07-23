@@ -1,6 +1,6 @@
 extends State
 
-const DURATION = .1
+const DURATION = .25
 
 var vault_speed_boost : float = 1.5
 
