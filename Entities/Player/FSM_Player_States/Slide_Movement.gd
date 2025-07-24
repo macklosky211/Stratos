@@ -22,9 +22,12 @@ func _update(player : State_Controller, _delta : float) -> void:
 	
 	var direction : Vector3 = player._get_world_direction_from_input(input)
 	
-	if current_speed <= velocity_last_frame: player.velocity = _move_vector_towards2(player.velocity, Vector3.ZERO, slide_decel)
+	if current_speed <= velocity_last_frame: 
+		direction *= player.velocity.length()
+		direction.y = player.velocity.y
+		player.velocity = _move_vector_towards2(direction, Vector3.ZERO, slide_decel)
+		
 	else: player.velocity = _move_vector_towards2(player.velocity, direction * player.SPRINT_SPEED, player.ACCEL)
-	
 	velocity_last_frame = current_speed
 
 
