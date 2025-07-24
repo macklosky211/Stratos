@@ -13,6 +13,8 @@ const JUMP_VELOCITY : float = 3.5
 const ACCEL : float = 1.25
 
 var mouse_sensitivity : float = 0.001
+
+var is_in_control : bool = true
 var mouse_locked : bool = false
 var is_crouching : bool = false
 var should_gravity: bool = true
@@ -35,7 +37,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
-	if current_state is Object and current_state.has_method("_update"): current_state._update(self, delta)
+	if is_in_control and current_state is Object and current_state.has_method("_update"): current_state._update(self, delta)
 	if not is_on_floor() and should_gravity: velocity += get_gravity() * delta
 	move_and_slide()
 	speedometer.text = "%.1f" % velocity.length()
@@ -46,11 +48,13 @@ func reset() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
-	if event is InputEventMouseMotion:
+	if not is_in_control: return
+	elif event is InputEventMouseMotion:
 		camera.rotation.x -= event.relative.y * mouse_sensitivity
 		rotation.y -= event.relative.x * mouse_sensitivity
 	elif not mouse_locked and Input.is_action_just_pressed("Fire"): toggle_mouse(true)
 	elif Input.is_action_just_pressed("Escape"): toggle_mouse()
+	elif Input.is_action_just_pressed("Interact"): interact()
 
 func _get_world_direction_from_input(local_vector : Vector2) -> Vector3:
 	return (transform.basis * Vector3(local_vector.x, 0, -local_vector.y)).normalized()
@@ -67,4 +71,11 @@ func _try_vault() -> bool:
 	if bottom_collision.is_colliding() and not waist_collision.is_colliding():
 		return true
 	return false
-	
+
+
+@onready var interaction_rays: ShapeCast3D = $Camera3D/InteractionRays
+func interact() -> void:
+	if interaction_rays.is_colliding():
+		var collider : Object = interaction_rays.get_collider(0)
+		if collider is Interactable: collider.interact(self)
+		else: print(collider, collider.get_class())

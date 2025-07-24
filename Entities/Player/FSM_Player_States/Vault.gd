@@ -4,7 +4,8 @@ const DURATION = .25
 
 var vault_speed_boost : float = 1.5
 
-var initial_velocity : Vector3
+
+var initial_speed : float = 0.0
 var tween : Tween
 
 @onready var landing: RayCast3D = $"Landing"
@@ -15,7 +16,9 @@ var apply_speed_boost : bool = true
 func _enter(player : State_Controller) -> void:
 	apply_speed_boost = true
 	player.should_gravity = false
-	initial_velocity = player.velocity
+	var initial_velocity : Vector3 = player.velocity
+	initial_velocity.y = 0.0
+	initial_speed = initial_velocity.length()
 	# player.velocity = Vector3.ZERO
 	
 	if tween: tween.kill()
@@ -46,10 +49,9 @@ func _enter(player : State_Controller) -> void:
 
 func _exit(player : State_Controller) -> void:
 	if apply_speed_boost:
-		var speed_boost : Vector3 = initial_velocity
-		speed_boost.y = 0.0
-		speed_boost = speed_boost.normalized() * vault_speed_boost
-		player.velocity = initial_velocity + speed_boost
-	else:
-		player.velocity = initial_velocity
+		var speed_boost : float = initial_speed + vault_speed_boost
+		player.velocity = player.velocity.normalized() * speed_boost
 	player.should_gravity = true
+
+func _get_state_name() -> String:
+	return "Player_Vault_Movement"
