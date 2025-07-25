@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwdqwwwjef3t2"]
+
+[ext_resource type="Script" uid="uid://dtvm8nw436bvu" path="res://Common/Scenes/Weapon Class/Weapon.gd" id="1_u8oeg"]
+
+[node name="GunClass" type="Node3D"]
+script = ExtResource("1_u8oeg")
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0909156, -0.58)

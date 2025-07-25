@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg042bf51e5st"]
+
+[ext_resource type="PackedScene" uid="uid://cwdqwwwjef3t2" path="res://Common/Scenes/Weapon Class/Weapon Class.tscn" id="1_co78j"]
+[ext_resource type="PackedScene" uid="uid://c7tquth1iqu63" path="res://Assets/Blender Files/Weapon Models/Assult Rifle.blend" id="3_exanm"]
+
+[node name="GunClass" instance=ExtResource("1_co78j")]
+weapon_name = "Assult Rifle"
+is_two_handed = false
+
+[node name="Assult Rifle" parent="." index="1" instance=ExtResource("3_exanm")]
