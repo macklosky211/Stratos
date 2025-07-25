@@ -4,6 +4,7 @@ class_name Player extends State_Controller
 @onready var health : HealthComponent = $HealthComponent
 
 @onready var speedometer: RichTextLabel = $Camera3D/HUD/Speedometer
+@onready var weapon_manager: WeaponManagerClass = $Camera3D/WeaponManager
 
 const WALK_SPEED : float = 5.0
 const SPRINT_SPEED : float = WALK_SPEED * 2.0
@@ -78,4 +79,5 @@ func interact() -> void:
 	if interaction_rays.is_colliding():
 		var collider : Object = interaction_rays.get_collider(0)
 		if collider is Interactable: collider.interact(self)
-		else: print(collider, collider.get_class())
+	else:
+		weapon_manager.unequip_weapon()

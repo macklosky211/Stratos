@@ -1,6 +1,7 @@
 class_name Level extends Node3D
 
 @onready var bullet_spawner: MultiplayerSpawner = $"Constant Elements/Bullet Folder/BulletSpawner"
+@onready var dropped_weapons_spawner: MultiplayerSpawner = $"Constant Elements/DroppedWeaponsSpawner"
 
 @export_category("Per Level Settings")
 @export var player_spawn_locations : Array[Marker3D] = []

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://crkupxoo1fnsm"]
+[gd_scene load_steps=7 format=3 uid="uid://crkupxoo1fnsm"]
 
 [ext_resource type="Script" uid="uid://q8m7r7tks21c" path="res://Common/Scenes/Level Class/level_class.gd" id="1_sdonv"]
 [ext_resource type="Script" uid="uid://c2pr8almaf3e8" path="res://Common/Scenes/Level Class/player_spawner.gd" id="2_w1dg1"]
+[ext_resource type="Script" uid="uid://4f8hqpc0cmvb" path="res://Common/Scenes/Level Class/dropped_weapons_spawner.gd" id="3_7jw5f"]
+[ext_resource type="PackedScene" uid="uid://brlpygggksuo6" path="res://Entities/Weapons/Assult Rifle/AR_Dropped_Weapon.tscn" id="4_h2tae"]
 
 [sub_resource type="Environment" id="Environment_w1dg1"]
 
@@ -36,6 +38,13 @@ shape = SubResource("WorldBoundaryShape3D_w1dg1")
 [node name="BulletSpawner" type="MultiplayerSpawner" parent="Constant Elements/Bullet Folder"]
 _spawnable_scenes = PackedStringArray("uid://dskpt6jtom78i")
 spawn_path = NodePath("..")
+
+[node name="DroppedWeaponsSpawner" type="MultiplayerSpawner" parent="Constant Elements"]
+spawn_path = NodePath(".")
+script = ExtResource("3_7jw5f")
+spawnable_scenes = Dictionary[String, PackedScene]({
+"Assult Rifle": ExtResource("4_h2tae")
+})
 
 [node name="PlayerSpawnPositions" type="Node" parent="."]
 

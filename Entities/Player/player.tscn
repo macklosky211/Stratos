@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjcm5l0drc8fw"]
+[gd_scene load_steps=19 format=3 uid="uid://cjcm5l0drc8fw"]
 
 [ext_resource type="Script" uid="uid://dshdp1cv7crie" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://ri22h4ln3vnp" path="res://Entities/Player/health_component.gd" id="2_3uyv8"]
+[ext_resource type="Script" uid="uid://bbm6g3foeaybe" path="res://Entities/Player/weapon_manager.gd" id="3_lub02"]
 [ext_resource type="Script" uid="uid://d3e3q5ihbabd6" path="res://Entities/Player/FSM_Player_States/Walk_Movement.gd" id="4_5c2io"]
 [ext_resource type="Script" uid="uid://flbktgmircge" path="res://Entities/Player/FSM_Player_States/Idle.gd" id="4_tekja"]
 [ext_resource type="Script" uid="uid://cycaxqa34cy5t" path="res://Entities/Player/FSM_Player_States/Sprint_Movement.gd" id="5_4wf4l"]
@@ -59,9 +60,6 @@ shape = SubResource("CapsuleShape3D_mv1ah")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25)
 
-[node name="WeaponComponent" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.75)
-
 [node name="HUD" type="Control" parent="Camera3D"]
 layout_mode = 3
 anchors_preset = 15
@@ -83,6 +81,20 @@ grow_horizontal = 0
 theme_override_font_sizes/normal_font_size = 50
 text = "SPEEED"
 fit_content = true
+
+[node name="WeaponManager" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.75)
+script = ExtResource("3_lub02")
+
+[node name="EquipedGunSpawner" type="MultiplayerSpawner" parent="Camera3D/WeaponManager"]
+_spawnable_scenes = PackedStringArray("uid://cg042bf51e5st")
+spawn_path = NodePath("..")
+
+[node name="LeftPosition" type="Marker3D" parent="Camera3D/WeaponManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="RightPosition" type="Marker3D" parent="Camera3D/WeaponManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
 [node name="InteractionRays" type="ShapeCast3D" parent="Camera3D"]
 visible = false

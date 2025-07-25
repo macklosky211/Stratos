@@ -42,9 +42,14 @@ folder_colors={
 "res://Common/": "green",
 "res://Common/AutoLoads/": "teal",
 "res://Common/FSM_Scripts/": "teal",
+"res://Common/Resources/": "teal",
 "res://Common/Scenes/": "teal",
 "res://Entities/": "green",
-"res://Entities/Player/FSM_Player_States/": "teal"
+"res://Entities/Bullet/": "teal",
+"res://Entities/Player/": "teal",
+"res://Entities/Player/FSM_Player_States/": "teal",
+"res://Entities/Weapons/": "teal",
+"res://Entities/Weapons/Assult Rifle/": "blue"
 }
 
 [global_group]

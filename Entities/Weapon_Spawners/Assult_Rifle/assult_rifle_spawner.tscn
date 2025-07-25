@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs8m5hkvhgt4x"]
-
-[ext_resource type="PackedScene" uid="uid://ht7y1rqs7i8c" path="res://Entities/Weapon_Spawner/weapon_spawner.tscn" id="1_a8cfy"]
-[ext_resource type="PackedScene" uid="uid://c7tquth1iqu63" path="res://Assets/Blender Files/Weapon Models/Assult Rifle.blend" id="2_4ftml"]
-
-[node name="Weapon_Spawner" instance=ExtResource("1_a8cfy")]
-
-[node name="Assult Rifle" parent="Model_Holder" index="2" instance=ExtResource("2_4ftml")]
