@@ -4,7 +4,7 @@ class_name HealthComponent extends Node
 
 var current_health : float = 100.0
 
-@rpc("authority", "call_local")
+@rpc("any_peer", "call_local")
 func take_damage(amount : float) -> void:
 	if not is_multiplayer_authority(): push_error("Take Damage was called by client that did not have authority. [%d]" % multiplayer.get_remote_sender_id())
 	

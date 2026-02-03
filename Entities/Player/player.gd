@@ -3,6 +3,7 @@ class_name Player extends State_Controller
 @onready var camera : Camera3D = $Camera3D
 @onready var health : HealthComponent = $HealthComponent
 
+@onready var hud: Control = $Camera3D/HUD
 @onready var speedometer: RichTextLabel = $Camera3D/HUD/Speedometer
 @onready var weapon_manager: WeaponManagerClass = $Camera3D/WeaponManager
 
@@ -32,6 +33,7 @@ func _ready() -> void:
 	if not is_multiplayer_authority():
 		$MeshInstance3D/Glasses.layers = 1
 		#print("[%d] does not own {%s : %d}" % [multiplayer.get_unique_id(), name, get_multiplayer_authority()])
+		hud.visible = false
 	else:
 		current_state = Idle
 		camera.make_current()

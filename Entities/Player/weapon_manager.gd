@@ -1,5 +1,17 @@
 class_name WeaponManagerClass extends Node3D
 
+class WeaponTemplate:
+	var scene_path : String = ""
+	var spawner_index : int = -1
+	
+	func _init(_scene_path : String = "", _spawner_index : int = -1) -> void:
+		scene_path = _scene_path
+		spawner_index = _spawner_index
+
+var weapon_list : Dictionary[StringName, WeaponTemplate] = {
+	"Assult_Rifle" : WeaponTemplate.new("res://Entities/Weapons/Assult Rifle/AR_Weapon.tscn")
+}
+
 enum HAND {LEFT, RIGHT}
 
 @onready var equiped_gun_spawner: MultiplayerSpawner = $EquipedGunSpawner
@@ -10,6 +22,11 @@ enum HAND {LEFT, RIGHT}
 
 func _ready() -> void:
 	equiped_gun_spawner.spawn_function = gun_spawn_function
+	
+	## Fills weapon spawner with weapons defined in {weapon_list}, and maps their indexes for future reference.
+	for weapon : WeaponTemplate in weapon_list.values():
+		equiped_gun_spawner.add_spawnable_scene(weapon.scene_path)
+		weapon.spawner_index = equiped_gun_spawner.get_spawnable_scene_count() - 1
 
 func drop_weapon(hand : HAND = HAND.LEFT) -> void:
 	if equiped_weapons[hand] != null:
@@ -36,14 +53,20 @@ func equip_weapon(weapon_node : Weapon) -> void:
 	if weapon_node.is_two_handed:
 		drop_weapon(HAND.LEFT)
 		drop_weapon(HAND.RIGHT)
-		
+
 @rpc("any_peer", "call_local")
 func request_spawn_equiped_weapon(vars : Array) -> void:
 	if not multiplayer.is_server(): return
 	equiped_gun_spawner.spawn(vars)
 
 func gun_spawn_function(vars : Array) -> Node:
-	var weapon_scene : PackedScene = vars[0]
+	print("[%d] Gun_Spawn_Function was called" % multiplayer.get_unique_id())
+	var weapon_key : StringName = vars[0]
+	
+	var weapon_template : WeaponTemplate = weapon_list.get(weapon_key)
+	assert(weapon_template != null, "Weapon Template was null. the key didnt match anything in the {weapon_list}")
+	
+	var weapon_scene : PackedScene = load(equiped_gun_spawner.get_spawnable_scene(weapon_template.spawner_index))
 	
 	var new_weapon : Weapon = weapon_scene.instantiate()
 	

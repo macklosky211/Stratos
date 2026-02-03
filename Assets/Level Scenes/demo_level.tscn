@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://u0os1vpmvhlt"]
+[gd_scene load_steps=5 format=3 uid="uid://u0os1vpmvhlt"]
 
 [ext_resource type="PackedScene" uid="uid://crkupxoo1fnsm" path="res://Common/Scenes/Level Class/level_class.tscn" id="1_yl22s"]
 [ext_resource type="PackedScene" uid="uid://b5m86rh1lvgmo" path="res://Assets/Blender Files/Level Models/lobby.blend" id="2_dc5oo"]
 [ext_resource type="PackedScene" uid="uid://bs8m5hkvhgt4x" path="res://Entities/Weapons/Assult Rifle/assult_rifle_spawner.tscn" id="3_dc5oo"]
+[ext_resource type="PackedScene" uid="uid://cu477cq1y2idi" path="res://Assets/Blender Files/Level Models/Arena_2.blend" id="4_cld4r"]
 
 [node name="Demo_Level" node_paths=PackedStringArray("player_spawn_locations") instance=ExtResource("1_yl22s")]
 player_spawn_locations = [NodePath("PlayerSpawnPositions/Marker3D"), NodePath("PlayerSpawnPositions/Marker3D2"), NodePath("PlayerSpawnPositions/Marker3D3"), NodePath("PlayerSpawnPositions/Marker3D4")]
@@ -23,3 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
 
 [node name="lobby" parent="." index="2" instance=ExtResource("2_dc5oo")]
+
+[node name="Arena_2" parent="." index="3" instance=ExtResource("4_cld4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1449, -10, 2.17748)

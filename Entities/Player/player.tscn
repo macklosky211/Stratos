@@ -79,7 +79,7 @@ offset_left = -0.0800781
 offset_bottom = 0.479996
 grow_horizontal = 0
 theme_override_font_sizes/normal_font_size = 50
-text = "SPEEED"
+text = "SPEED"
 fit_content = true
 
 [node name="WeaponManager" type="Node3D" parent="Camera3D"]
@@ -87,7 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.75)
 script = ExtResource("3_lub02")
 
 [node name="EquipedGunSpawner" type="MultiplayerSpawner" parent="Camera3D/WeaponManager"]
-_spawnable_scenes = PackedStringArray("uid://cg042bf51e5st")
 spawn_path = NodePath("..")
 
 [node name="LeftPosition" type="Marker3D" parent="Camera3D/WeaponManager"]
@@ -135,12 +134,10 @@ target_position = Vector3(0, -50, 0)
 
 [node name="Waist_Collision" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-visible = false
 shape = SubResource("BoxShape3D_lub02")
 target_position = Vector3(0, 0, -0.5)
 
 [node name="Bottom_Collision" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-visible = false
 shape = SubResource("BoxShape3D_x1y6q")
 target_position = Vector3(0, 0, -0.5)

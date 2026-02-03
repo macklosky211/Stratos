@@ -1,0 +1,180 @@
+[33mcommit 55507e51db8b82ccfd6473d36fe20a2f6f76ad06[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Fri Jul 25 14:49:44 2025 -0400
+
+    started working on weapon spawning / equiping system
+
+[33mcommit 2de612bb319b03a541eeb5b04d246a169beaee08[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Thu Jul 24 22:29:23 2025 -0400
+
+    Worlds worst weapon spawning implimentation yet... but it works
+
+[33mcommit c6d8cc19f68ccfc30bee36c4df15364cad338b88[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Thu Jul 24 15:31:00 2025 -0400
+
+    started weapon spawner system
+
+[33mcommit 851aeec8e627a52ce95caaf2a99551e3b1ab68ab[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Thu Jul 24 15:30:51 2025 -0400
+
+    fix vaulting / sliding bugs.
+
+[33mcommit a52a367ec162409a1f52fccea069be672899fe43[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Thu Jul 24 15:30:36 2025 -0400
+
+    update models scales.
+
+[33mcommit 4df4cf4615e181bdb73cb24ad1ce2db2713414f8[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Wed Jul 23 23:19:36 2025 -0400
+
+    update arena_2 bridge
+
+[33mcommit ee9359eb8a66152d450caf91d8ca158ef7fcc7dc[m
+Author: Ant <44372274+Abarr27@users.noreply.github.com>
+Date:   Wed Jul 23 23:11:14 2025 -0400
+
+    slide with direction of mouse
+
+[33mcommit 27c412d9125182668e44f847b4e8a38607a6a471[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Wed Jul 23 17:35:20 2025 -0400
+
+    Tweaked vaulting even more
+
+[33mcommit f40872cc68c43670302c9748a0790bfdaecb1a3f[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Wed Jul 23 14:50:15 2025 -0400
+
+    tweaked vault. fixed snapping bug again.
+
+[33mcommit 3689863ae906ea7310d57fdc65c3e4f5cd6f6317[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Tue Jul 22 16:49:23 2025 -0400
+
+    Fixed and improved vault mechanic. Now based on shapecasts instead of raycasts, and gives slight speed boost.
+
+[33mcommit ab7ee8e655a0dfeb786278bf5bad6299dc7621ed[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Tue Jul 22 15:45:40 2025 -0400
+
+    Fix assult rifle model. Adjust position of weapons.
+
+[33mcommit d7b643a6dd39847f7cbf52e04814004a8dc9914c[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Tue Jul 22 15:37:57 2025 -0400
+
+    updated git ignore
+
+[33mcommit b1eba25c36c312f0906287614927bde5df00ffe0[m
+Merge: 44914db 265f8e1
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Tue Jul 22 01:33:18 2025 -0400
+
+    Merge branch 'master' of C:\Users\gituser\gitrepos\stratos
+
+[33mcommit 44914db4100a2ad08083519037a929892f54bbdf[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Tue Jul 22 01:33:16 2025 -0400
+
+    speedometer :P
+
+[33mcommit 265f8e123a63daccb9c4b40f86830b6c0592705f[m
+Author: Ant <44372274+Abarr27@users.noreply.github.com>
+Date:   Tue Jul 22 01:33:05 2025 -0400
+
+    vaulting no worky :(
+
+[33mcommit 31acc0cb19f3a3d2f488089bcec15e5eeb648ebf[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 23:49:49 2025 -0400
+
+    Removed old debug-print statements
+
+[33mcommit e5c34cd7eaafe07709643995567a9a18d2b81a85[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 23:45:24 2025 -0400
+
+    re-commented the stupid change state print-debug statement
+
+[33mcommit e6239061f73de28882f71a233f41d676fbd73d4f[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 23:40:10 2025 -0400
+
+    Improved slide further
+
+[33mcommit bc4a30124ad6a4a2d3bb749d1ec9c74cf7632caf[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 23:34:07 2025 -0400
+
+    Improved slide mechanics
+
+[33mcommit 67546fcfa41bccdd7287ef4198a80c35f38479c7[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 22:59:55 2025 -0400
+
+    adjusted movement scripts
+
+[33mcommit 2f89a83dc786b0315e33e3c6308f9fec59cc82be[m
+Author: Ant <44372274+Abarr27@users.noreply.github.com>
+Date:   Mon Jul 21 20:52:44 2025 -0400
+
+    sliding moment
+
+[33mcommit f15f81cc1f9383d6f485187b4ef75330287e764b[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 19:30:39 2025 -0400
+
+    Fix dying o(number of connected clients) times... it was cause the health compontnent was subscribed to the event, and there is a health component per player...
+
+[33mcommit e1a9f586c3d7033d4cd343018ee966711dab7124[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 19:02:28 2025 -0400
+
+    Gun Bullet Sync Kinda Done. Probably lots of bugs.
+
+[33mcommit 64337615c874a40b788203fb16088a0a7d554a23[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 17:50:34 2025 -0400
+
+    created a folder to spawn bullets in. Added basic rifle model
+
+[33mcommit e803c2c58aa6d25044c5ac0cec858fa6a4e04269[m
+Author: Ant <44372274+Abarr27@users.noreply.github.com>
+Date:   Mon Jul 21 15:43:18 2025 -0400
+
+    gun
+
+[33mcommit f0d678cd811864bb4fa923a02cbb07f9d4397a0b[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 14:18:06 2025 -0400
+
+    Attempting to create reset mechanic. BUG: player dies 2x on each client instead of just 1x... this shouldnt happen, im not sure the cause
+
+[33mcommit 523ef868ac7f47c418b8795b9b98c2586ba7fd10[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 13:45:08 2025 -0400
+
+    Implimented simple round mechanics
+
+[33mcommit 617c50ccd6c56c9350cc63903f80e763f577a6f3[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 12:56:41 2025 -0400
+
+    Simple Score Implimentation
+
+[33mcommit 34a61853f4ca43cd0b25b2d8606abbbfda9480cf[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Mon Jul 21 00:46:59 2025 -0400
+
+    Implimented very basic health system. Improved player controls. Added another level model
+
+[33mcommit cecc03da20bf90069c8ee61add9abd9518ca66cc[m
+Author: Mac Klosky <macklosky211@gmail.com>
+Date:   Sun Jul 20 23:45:23 2025 -0400
+
+    Basic Setup Complete
