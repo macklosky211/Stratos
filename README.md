@@ -1,5 +1,11 @@
 # Stratos
 
+## Demo Video of Alpha Gameplay
+
+https://github.com/user-attachments/assets/18b24bec-3163-4122-99d1-8725433ffaf2
+
+
+
 ## Multiplayer Arena FPS – Alpha
 
 Stratos is a fast-paced multiplayer arena shooter inspired by games like Quake and Straftat, with a focus on advanced movement mechanics and extensible gameplay systems. The project was built as a gameplay and systems-focused prototype, emphasizing modular design, responsiveness, and multiplayer support.
